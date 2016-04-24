@@ -1,0 +1,21 @@
+.form-inline input,
+.form-inline select{
+    width: 8em !important;
+    display: inline;
+}
+
+input[type="date"] {
+    width: 100% !important;
+}
+
+[class*="form"] input + select {
+    display: inline;
+}
+
+.log-form {
+    padding: 1em;
+    margin: 1em 0em;
+}
+/*.form-inline input[type="time"] {
+    width: 7em;
+}*/
