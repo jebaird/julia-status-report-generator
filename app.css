@@ -15,7 +15,12 @@ input[type="date"] {
 .log-form {
     padding: 1em;
     margin: 1em 0em;
+    display: none;
 }
-/*.form-inline input[type="time"] {
-    width: 7em;
-}*/
+
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}

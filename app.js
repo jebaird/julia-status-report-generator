@@ -75,10 +75,10 @@
         var fields = {}
 
         $.each($form.serializeArray(), function(i, field) {
-            console.log(field)
+
             var value = field.value;
             if (field.name == 'time') {
-                //value = getFormattedTime(value)
+                value = getFormattedTime(value)
             }
             fields[field.name] = value;
 
@@ -104,18 +104,19 @@
     }
 
     var storeLogData = function(){
-
-
         // save it
         var logData = Storage.set( LOG_DATA_STORAGE_KEY, $logTableBody.html() );
     }
 
+
+    // do we have any data to restore?
     var logTableBodyHtml = Storage.get( LOG_DATA_STORAGE_KEY );
     if ( logTableBodyHtml !== undefined ) {
         $logTableBody.html( logTableBodyHtml );
     }
 
 
+    // remove table rows
 
     $('.log-table').on( 'click', '.log-table__remove-row',  function( e  ){
 
@@ -130,7 +131,7 @@
  */
 
     $('form').on('submit', function(e) {
-        
+
         e.preventDefault();
 
         $this = $(this);
@@ -148,6 +149,47 @@
 
        storeLogData();
 
+       // slide form backup
+       
+       this.reset();
+       $this.parents('.log-form').slideUp()
+
+    });
+
+
+    // actions
+    // 
+    $('.action--print').click( function( e ){
+        var printTemplate = t($('#printFormat').html(), {
+            'report-date': $('[name="report-date"]').val(),
+            'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
+            'logdata': $('<div>').append($('.log-table').clone()).html()
+        });
+        console.log( printTemplate)
+
+
+        var printWindow = window.open('print.html');
+        console.log( printWindow )
+        printWindow.onload = function(){
+        $( printWindow.document.body ).append(printTemplate) ;
+
+
+       setTimeout(function(){
+         printWindow.print()
+     }, 1000)
+        }
+    });
+
+    // show log form
+    $('.action--show-log-form').click( function(){
+        $('.log-form').slideDown();
+    });
+
+    $('.action--cleardata').click(function(){
+        if( confirm('Are you sure you want to clear all data? This action can\'t be undone') ){
+            Storage.clear();
+            location = location
+        }
     })
 
 })()
