@@ -7,6 +7,31 @@
          * print styles
          * print button
      */
+    
+
+    var LOG_DATA_STORAGE_KEY = 'logData';
+
+
+    var Storage = {
+        get: function( key, mode ){
+            var data = window.localStorage.getItem( key );
+
+            // if the key hasn't been set it returns a null, which is "true" in js
+            return ( data === null ) ? undefined : JSON.parse( data );
+           
+        },
+        set: function( key, data ) {
+            window.localStorage.setItem( key, JSON.stringify( data ) );
+        },
+        'clear': function(){
+            window.localStorage.clear();
+        },
+        'remove': function( key ) {
+            window.localStorage.removeItem( key );
+        }
+    }
+
+
 
 
     $('.phoenix-input').phoenix()
@@ -53,7 +78,7 @@
             console.log(field)
             var value = field.value;
             if (field.name == 'time') {
-                value = getFormattedTime(value)
+                //value = getFormattedTime(value)
             }
             fields[field.name] = value;
 
@@ -64,7 +89,10 @@
     }
 
 
+    // default to now
     $('[type="time"').setInputTypeTimeToNow();
+
+
     var $documentBody = $(document.body);
     var $logTableBody = $('.log-table tbody');
     var makeRow = function(data) {
@@ -75,10 +103,34 @@
         return t(template, data);
     }
 
+    var storeLogData = function(){
+
+
+        // save it
+        var logData = Storage.set( LOG_DATA_STORAGE_KEY, $logTableBody.html() );
+    }
+
+    var logTableBodyHtml = Storage.get( LOG_DATA_STORAGE_KEY );
+    if ( logTableBodyHtml !== undefined ) {
+        $logTableBody.html( logTableBodyHtml );
+    }
+
+
+
+    $('.log-table').on( 'click', '.log-table__remove-row',  function( e  ){
+
+        if ( confirm('Are you sure you want to remove this row?') ) {
+            $( this ).parents( 'tr' ).remove();
+            storeLogData();
+        }
+    })
+/*
+
+    aapp gud
+ */
 
     $('form').on('submit', function(e) {
-
-        console.log('submit')
+        
         e.preventDefault();
 
         $this = $(this);
@@ -90,8 +142,12 @@
             return;
         }
 
-        $logTableBody.prepend(makeRow(serializeFormToObject($this)));
-        // todo store current markup in session storage
+        var formData = serializeFormToObject($this);
+
+       $logTableBody.prepend(makeRow(formData));
+
+       storeLogData();
+
     })
 
 })()
