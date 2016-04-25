@@ -160,18 +160,20 @@
     // actions
     // 
     $('.action--print').click( function( e ){
-        var printTemplate = t($('#printFormat').html(), {
+
+        var printVars = {
             'report-date': $('[name="report-date"]').val(),
             'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
             'logdata': $('<div>').append($('.log-table').clone()).html()
-        });
-        console.log( printTemplate)
+        };
+        var printTemplate = t($('#printFormat').html(), printVars );
 
 
         var printWindow = window.open('print.html');
         console.log( printWindow )
         printWindow.onload = function(){
         $( printWindow.document.body ).append(printTemplate) ;
+        $( printWindow.document.head ).append('<title>Medication report for '+ printVars['report-date']+'</title>') ;
 
 
        setTimeout(function(){
