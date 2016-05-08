@@ -168,19 +168,11 @@
             'notes': $('[name="notes"]').val()
         };
         var printTemplate = t($('#printFormat').html(), printVars );
+        
+        $( document.body ).append( printTemplate );
 
-
-        var printWindow = window.open('print.html');
-        console.log( printWindow )
-        printWindow.onload = function(){
-        $( printWindow.document.body ).append(printTemplate) ;
-        $( printWindow.document.head ).append('<title>Medication report for '+ printVars['report-date']+'</title>') ;
-
-
-       setTimeout(function(){
          printWindow.print()
-     }, 1000)
-        }
+        
     });
 
     // show log form
