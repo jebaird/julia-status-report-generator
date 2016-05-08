@@ -21,4 +21,8 @@ body {
 .hidden-desktop{display:none!important}
 .visible-desktop{display:inherit!important}
 
+.no-print{
+    display:none;
+}
+
 }
