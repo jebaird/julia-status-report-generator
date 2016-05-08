@@ -176,7 +176,7 @@
             .children('.media--print').remove()
             .append( printTemplate );
 
-         printWindow.print()
+         window.print()
         
     });
 
