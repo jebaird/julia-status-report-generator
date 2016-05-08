@@ -104,7 +104,7 @@
             .height( this.scrollHeight );
     }
     
-    $(document).on( 'keyup', 'textarea', setTextAreaHeight ).each(setTextAreaHeight);
+    $(document).on( 'keyup', 'textarea', setTextAreaHeight ).find('textarea').each(setTextAreaHeight);
 
 
     var $documentBody = $(document.body);
