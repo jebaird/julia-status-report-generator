@@ -170,7 +170,7 @@
             'logdata': $('<div>').append($('.log-table').clone()).html(),
             'notes': $('[name="notes"]').val()
         };
-        var printTemplate = t($('#printFormat').html(), printVars );
+        var printTemplate = t($(document.importNode($('#printFormat')[0].content, true)).html(), printVars );
         
         $( document.body )
             .children('.media--print').remove()
