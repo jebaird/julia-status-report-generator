@@ -91,6 +91,9 @@
 
     // default to now
     $('[type="time"').setInputTypeTimeToNow();
+    $('title').html( t($('title').html(),{
+        'report-date': $('[name="report-date"]').val()
+    }));
 
 
     var $documentBody = $(document.body);
@@ -169,7 +172,9 @@
         };
         var printTemplate = t($('#printFormat').html(), printVars );
         
-        $( document.body ).append( printTemplate );
+        $( document.body )
+            .children('.media--print').remove()
+            .append( printTemplate );
 
          printWindow.print()
         
