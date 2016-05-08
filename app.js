@@ -98,11 +98,13 @@
     
     setTitleTag()
     
-    $(document).on( 'keyup', 'textarea', function (e){
-        $(this)
+    var setTextAreaHeight = function(){
+         $(this)
             .css('height', 'auto' )
             .height( this.scrollHeight );
-    }).keyup();
+    }
+    
+    $(document).on( 'keyup', 'textarea', setTextAreaHeight ).each(setTextAreaHeight);
 
 
     var $documentBody = $(document.body);
