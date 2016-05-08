@@ -161,13 +161,13 @@
 
 
     // actions
-    
+    //https://www.tjvantoll.com/2012/06/15/detecting-print-requests-with-javascript/
     var beforePrint = function() {
                var printVars = {
             'report-date': $('[name="report-date"]').val(),
             'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
             'logdata': $('<div>').append($('.log-table').clone()).html(),
-            'notes': $('[name="notes"]').val()
+            'notes': $('[name="notes"]').val().replace(/\n/g, "<br />")
         };
         var printTemplate = t($('#printFormat').html(), printVars );
         
