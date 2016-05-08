@@ -171,11 +171,11 @@
         };
         var printTemplate = t($(document.importNode($('#printFormat')[0].content, true)).html(), printVars );
         
-        $( document.body )
+        $( 'body' )
             .append( printTemplate );
             };
             var afterPrint = function() {
-                 $( document.body ).find('.media--print').remove()
+                 $( 'body' ).find('.media--print').remove()
             };
 
             if (window.matchMedia) {
