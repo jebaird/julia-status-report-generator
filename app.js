@@ -87,13 +87,22 @@
 
         return fields;
     }
-
+    function setTitleTag(){
+            $('title').html( t($('title').html(),{
+        'report-date': $('[name="report-date"]').val()
+    }));
+    }
 
     // default to now
     $('[type="time"').setInputTypeTimeToNow();
-    $('title').html( t($('title').html(),{
-        'report-date': $('[name="report-date"]').val()
-    }));
+    
+    setTitleTag()
+    
+    $(document).on( 'keyup', 'textarea', function (e){
+        $(this)
+            .css('height', 'auto' )
+            .height( this.scrollHeight );
+    }).keyup();
 
 
     var $documentBody = $(document.body);
@@ -163,6 +172,7 @@
     // actions
     //https://www.tjvantoll.com/2012/06/15/detecting-print-requests-with-javascript/
     var beforePrint = function() {
+        setTitleTag()
                var printVars = {
             'report-date': $('[name="report-date"]').val(),
             'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
