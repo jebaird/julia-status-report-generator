@@ -1,12 +1,3 @@
-.form-inline input,
-.form-inline select{
-    width: 8em !important;
-    display: inline;
-}
-
-input[type="date"] {
-    width: 100% !important;
-}
 
 [class*="form"] input + select {
     display: inline;
@@ -20,7 +11,14 @@ input[type="date"] {
 
 
 @media print {
-    .no-print {
-        display: none;
-    }
+html, 
+body {
+    width: 1200px !important;
+}
+.hidden{display:none;visibility:hidden}
+.visible-phone{display:none!important}
+.visible-tablet{display:none!important}
+.hidden-desktop{display:none!important}
+.visible-desktop{display:inherit!important}
+
 }
