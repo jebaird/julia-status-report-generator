@@ -169,7 +169,7 @@
             'logdata': $('<div>').append($('.log-table').clone()).html(),
             'notes': $('[name="notes"]').val()
         };
-        var printTemplate = t($(document.importNode($('#printFormat')[0].content, true)).html(), printVars );
+        var printTemplate = t($('#printFormat').html(), printVars );
         
         $( 'body' )
             .append( printTemplate );
