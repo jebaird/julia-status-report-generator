@@ -2,6 +2,7 @@
     <html>
 
     <head>
+        <title>Medication report for {report-date}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Latest compiled and minified CSS -->
@@ -10,7 +11,7 @@
     </head>
 
     <body>
-        <div class="container no-print">
+        <div class="container no-print media--screen">
 
             <form class="form-horizontal">
                 <div class="form-group">
@@ -132,7 +133,7 @@
         <hr>
 
         <template id="printFormat">
-            <div class="container">
+            <div class="container media--print">
                 <h1>Medication report for {report-date}</h1>
 
                 <p>Julia woke up at {wokeupatnumber}</p>
