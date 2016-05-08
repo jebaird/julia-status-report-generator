@@ -161,10 +161,9 @@
 
 
     // actions
-    // 
-    $('.action--print').click( function( e ){
-
-        var printVars = {
+    
+    var beforePrint = function() {
+               var printVars = {
             'report-date': $('[name="report-date"]').val(),
             'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
             'logdata': $('<div>').append($('.log-table').clone()).html(),
@@ -173,8 +172,28 @@
         var printTemplate = t($(document.importNode($('#printFormat')[0].content, true)).html(), printVars );
         
         $( document.body )
-            .children('.media--print').remove()
             .append( printTemplate );
+            };
+            var afterPrint = function() {
+                 $( document.body ).find('.media--print').remove()
+            };
+
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (mql.matches) {
+                        beforePrint();
+                    } else {
+                        afterPrint();
+                    }
+                });
+            }
+
+            window.onbeforeprint = beforePrint;
+            window.onafterprint = afterPrint;
+    
+    
+    $('.action--print').click( function( e ){
 
          window.print()
         
