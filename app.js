@@ -164,7 +164,8 @@
         var printVars = {
             'report-date': $('[name="report-date"]').val(),
             'wokeupatnumber': getFormattedTime( $('[name="wokeupatnumber"]').val() ),
-            'logdata': $('<div>').append($('.log-table').clone()).html()
+            'logdata': $('<div>').append($('.log-table').clone()).html(),
+            'notes': $('[name="notes"]').val()
         };
         var printTemplate = t($('#printFormat').html(), printVars );
 
