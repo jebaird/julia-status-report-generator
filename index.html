@@ -12,17 +12,14 @@
     <body>
         <div class="container no-print">
 
-            <form class="form-inline">
+            <form class="form">
                 <div class="form-group">
                     <label for="date">Report For</label>
-                    <input type="date" class="form-control phoenix-input" name="report-date">
+                    <input type="date" class="form-control " name="report-date" riot-tag="jb-input">
                 </div>
-
-            </form>
-            <form class="form-inline">
                 <div class="form-group">
                     <label for="wokeupatnumber">Julia Woke at</label>
-                    <input type="time" class="form-control form-control-small phoenix-input" name="wokeupatnumber" maxlength="2" value="10" step="300">
+                    <input type="time" class="form-control" name="wokeupatnumber" maxlength="2" value="10" step="300" riot-tag="jb-input">
              
                 </div>
 
@@ -78,20 +75,7 @@
                 </form>
             </div>
 
-                <table class="table table-striped log-table">
-                    <thead>
-                        <tr>
-                            <th class="no-print"><br></th>
-                            <th>Time</th>
-                            <th>Item</th>
-                            <th>Amount</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                    </tbody>
-                </table>
+            <jb-log></jb-log>
 
          
 <!-- CONTROLS -->
@@ -105,21 +89,6 @@
         </div>
 
 
-
-
-        <template id="table-row">
-               <tr>
-
-                <td class="no-print">
-                    <button class="btn btn-default log-table__remove-row">remove</button>
-                </td>
-                <td>{time}</td>
-                <td>{item}</td>
-                <td>{amount}</td>
-            </tr>
-
-
-        </template>
 
 
 
@@ -136,9 +105,21 @@
             </div>
         </template>
 
+                <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
+                <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
+
+
+        <script src="riot_compiler.min.js"></script>
+
+
         <script type="text/javascript" src="jquery.min.js"></script>
-        <script type="text/javascript" src="jquery.phoenix.js"></script>
         <script type="text/javascript" src="app.js"></script>
+
+<!-- mount normally -->
+<script>
+riot.mount('*')
+</script>
+
     </body>
 
     </html>
