@@ -15,12 +15,15 @@
         text-align: right;
     }
 
-     tr > td:first-of-type {
+/*     tr > td:first-of-type {
         visibility: hidden;
+        opacity: 0;
+        transition: opacity .4s ease-in-out, visibility .4s ease-in-out;
     }
     tr:hover > td:first-of-type{
         visibility: visible;
-    }
+        opacity: 1;
+    }*/
 
 
 </style>
@@ -41,7 +44,7 @@
         <tr each="{ opts.entries }">
 
             <td class="no-print">
-                <button class="btn btn-default" onclick="{remove}" title="remove this entry">X</button>
+                <button class="btn btn-danger" onclick="{remove}" title="remove this entry">X</button>
             </td>
             <td class="jb-log__time"><time>{ getFormattedTime( time ) }<time></td>
             <td class="jb-log__amount">{ amount }{ unit }</td>

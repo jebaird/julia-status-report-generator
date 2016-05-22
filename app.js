@@ -40,28 +40,44 @@ console.log('jquery')
 
 
     // actions
-    // 
+    
+ //https://www.tjvantoll.com/2012/06/15/detecting-print-requests-with-javascript/
+    var beforePrint = function() {
+        
+               var printVars = {
+            'report-date': $('[name="report-date"]').val(),
+            'wokeupatnumber': $('[name="wokeupatnumber"]').val(),
+            'logdata': $('<div>').append($('.log-table').clone()).html(),
+            'notes': $('[name="notes"]').val().replace(/\n/g, "<br />")
+        };
+        var printTemplate = t($('#printFormat').html(), printVars );
+        
+        $( 'body' )
+            .append( printTemplate );
+            };
+            var afterPrint = function() {
+                 $( 'body' ).find('.media--print').remove()
+            };
+
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (mql.matches) {
+                        beforePrint();
+                    } else {
+                        afterPrint();
+                    }
+                });
+            }
+
+            window.onbeforeprint = beforePrint;
+            window.onafterprint = afterPrint;
+
+
     $('.action--print').click(function(e) {
 
-        var printVars = {
-            'report-date': $('[name="report-date"]').val(),
-            'wokeupatnumber': getFormattedTime($('[name="wokeupatnumber"]').val()),
-            'logdata': $('<div>').append($('.log-table').clone()).html()
-        };
-        var printTemplate = t($('#printFormat').html(), printVars);
+        window.print()
 
-
-        var printWindow = window.open('print.html');
-        console.log(printWindow)
-        printWindow.onload = function() {
-            $(printWindow.document.body).append(printTemplate);
-            $(printWindow.document.head).append('<title>Medication report for ' + printVars['report-date'] + '</title>');
-
-
-            setTimeout(function() {
-                printWindow.print()
-            }, 1000)
-        }
     });
 
     // show log form
