@@ -9,34 +9,6 @@
      */
 
 
-    var LOG_DATA_STORAGE_KEY = 'logData';
-
-
-
-
-
-
-    var Storage = {
-        _frame: document.createElement('iframe'),
-        get: function(key, mode) {
-            var data = window.localStorage.getItem(key);
-
-            // if the key hasn't been set it returns a null, which is "true" in js
-            return (data === null) ? undefined : JSON.parse(data);
-
-        },
-        set: function(key, data) {
-            this._frame.contentWindow.localStorage.setItem(key, JSON.stringify(data));
-        },
-        'clear': function() {
-            window.localStorage.clear();
-        },
-        'remove': function(key) {
-            window.localStorage.removeItem(key);
-        }
-    };
-
-    document.body.appendChild( Storage._frame );
 
         /*
          * super small templating engine
@@ -51,14 +23,7 @@
     }
 
 
-    getFormattedTime = function(fourDigitTime) {
-        var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
-        var hours = ((hours24 + 11) % 12) + 1;
-        var amPm = hours24 > 11 ? 'pm' : 'am';
-        var minutes = fourDigitTime.substring(2);
 
-        return hours + minutes + amPm;
-    };
         /*
 
             aapp gud

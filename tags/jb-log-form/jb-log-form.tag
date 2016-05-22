@@ -55,12 +55,12 @@
 <script>
 
 submit( e ) {
+    console.log( e )
     e.preventDefault();
 
     e.target.checkValidity();
 
     var values = {};
-
     // todo check if values gets cleaned up if we set the context to this
     [].slice.call( e.target ).forEach(function( input ){
         var name = input.getAttribute('name');
@@ -99,7 +99,6 @@ submit( e ) {
 }
 
 timeToNow( e ){
-    console.log( e.target )
     if ( !e.target.value ) {
 
           var d = new Date(),

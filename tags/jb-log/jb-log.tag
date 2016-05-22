@@ -15,6 +15,13 @@
         text-align: right;
     }
 
+     tr > td:first-of-type {
+        visibility: hidden;
+    }
+    tr:hover > td:first-of-type{
+        visibility: visible;
+    }
+
 
 </style>
 
@@ -34,9 +41,9 @@
         <tr each="{ opts.entries }">
 
             <td class="no-print">
-                <button class="btn btn-default log-table__remove-row" onclick="{remove}">remove</button>
+                <button class="btn btn-default" onclick="{remove}" title="remove this entry">X</button>
             </td>
-            <td class="jb-log__time">{ time }</td>
+            <td class="jb-log__time"><time>{ getFormattedTime( time ) }<time></td>
             <td class="jb-log__amount">{ amount }{ unit }</td>
             <td class="jb-log__item">{ item }</td>
         </tr>
@@ -75,6 +82,14 @@
     };
 
 
+    getFormattedTime(fourDigitTime) {
+        var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
+        var hours = ((hours24 + 11) % 12) + 1;
+        var amPm = hours24 > 11 ? 'pm' : 'am';
+        var minutes = fourDigitTime.substring(2);
+
+        return hours + minutes + amPm;
+    }
 
 
 this.LOG_DATA_STORAGE_KEY = 'logData';
