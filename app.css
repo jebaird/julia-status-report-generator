@@ -1,4 +1,4 @@
-.form-inline input,
+/*.form-inline input,
 .form-inline select{
     width: 8em !important;
     display: inline;
@@ -10,13 +10,13 @@ input[type="date"] {
 
 [class*="form"] input + select {
     display: inline;
-}
+}*/
 
-.log-form {
+/*.log-form {
     padding: 1em;
     margin: 1em 0em;
     display: none;
-}
+}*/
 
 
 @media print {

@@ -30,49 +30,7 @@
 
 
                 <div class="log-form">
-                <form class="form-inline" type="post">
-                    <div class="form-group">
-                        <label for="time" class="control-label">Time</label>
-                            <input type="time" class="form-control" id="time" placeholder="" name="time" step="300">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="control-label">Item</label>
-                            
-                            <select name="item" class="form-control">
-                                <option value="">Select...</option>
-                                <option value="Peidasure">Peidasure</optoin>
-                                <option value="Baclofen">Baclofen</optoin>
-                                <option value="Clonidine">Clonidine</optoin>
-                                <option value="Cypoheptadine / Periatctin">Cypoheptadine / Periatctin</optoin>
-                                <option value="Omeprazole">Omeprazole</optoin>
-                                <option value="Topiramate">Topiramate</optoin>
-                                <option value="Mrialax">Mrialax</optoin>
-                                <option value="Rubionol / Cuvposa">Rubionol / Cuvposa</optoin>
-                                <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</optoin>
-                                <option value="Valium / Diazepam">Valium / Diazepam</optoin>
-
-                            </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="inputPassword3" class="control-label">Amount</label>
-                            <input type="number" step=".25" min="0" value="1" class="form-control" name="amount" placeholder="">
-                            
-                            <select name="unit" class="form-control form-control-small">
-                                <option value="ml">ml</optoin>
-                                <option value="tsp">tsp</optoin>
-
-                            </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">submit</button>
-                        </div>
-                    </div>
-                </form>
+                    <jb-log-form></jb-log-form>
             </div>
 
             <jb-log></jb-log>
@@ -107,6 +65,7 @@
 
                 <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
                 <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
+                <script src="tags/jb-log-form/jb-log-form.tag" type="riot/tag"></script>
 
 
         <script src="riot_compiler.min.js"></script>

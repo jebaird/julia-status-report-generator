@@ -2,7 +2,6 @@
 <script>
 
 this.on('before-mount', function(){
-    console.log( 'input', this )
 
     var value = window.localStorage.getItem( this.root.getAttribute('name') );
 

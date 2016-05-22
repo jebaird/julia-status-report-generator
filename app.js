@@ -50,19 +50,6 @@
         return s;
     }
 
-    $.fn.setInputTypeTimeToNow = function() {
-        return this.each(function() {
-
-            var d = new Date(),
-                h = d.getHours(),
-                m = d.getMinutes();
-            if (h < 10) h = '0' + h;
-            if (m < 10) m = '0' + m;
-            $(this).attr({
-                'value': h + ':' + m
-            });
-        })
-    }
 
     getFormattedTime = function(fourDigitTime) {
         var hours24 = parseInt(fourDigitTime.substring(0, 2), 10);
@@ -72,67 +59,14 @@
 
         return hours + minutes + amPm;
     };
-
-
-    function serializeFormToObject($form) {
-        var fields = {}
-
-        $.each($form.serializeArray(), function(i, field) {
-
-            var value = field.value;
-            if (field.name == 'time') {
-                value = getFormattedTime(value)
-            }
-            fields[field.name] = value;
-
-        });
-
-
-        return fields;
-    }
-
-
-    // default to now
-    $('[type="time"').setInputTypeTimeToNow();
-
-
-    var $documentBody = $(document.body);
-
-
         /*
 
             aapp gud
          */
 
     $('form').on('submit', function(e) {
+console.log('jquery')
 
-        e.preventDefault();
-
-        $this = $(this);
-
-        var fields = $this.serializeArray();
-        if (fields[1].value == '') {
-            $this.find('button').addClass('btn-danger')
-            $this.find('[name="item"]').parents('.form-group').addClass('has-error')
-            return;
-        }
-
-        var formData = serializeFormToObject($this);
-
-
-
-        console.log( formData )
-
-        var current = Storage.get( LOG_DATA_STORAGE_KEY );
-
-        if ( !current ){
-            current = [];
-        }
-        current.push( formData );
-
-        Storage.set( LOG_DATA_STORAGE_KEY, current )
-        console.log( current)
-        // slide form backup
 
         this.reset();
         $this.parents('.log-form').slideUp()
