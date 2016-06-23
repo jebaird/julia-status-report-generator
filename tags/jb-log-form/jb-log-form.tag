@@ -16,8 +16,9 @@
     <div class="form-group">
         <label for="" class="control-label">Item</label>
             
-            <select name="item" class="form-control" required>
-                <option value="">Select...</option>
+            <input list="medications" name="item" required>
+
+            <datalist id="medications">
                 <option value="Peidasure">Peidasure</optoin>
                 <option value="Baclofen">Baclofen</optoin>
                 <option value="Clonidine">Clonidine</optoin>
@@ -29,7 +30,7 @@
                 <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</optoin>
                 <option value="Valium / Diazepam">Valium / Diazepam</optoin>
 
-            </select>
+            </datalist>
     </div>
 
 
