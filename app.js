@@ -30,7 +30,7 @@
     }
 
     function setDocTitle( date ) {
-        console.log( date )
+        
         if ( date === null || typeof date != 'string' ) {
 
             date = date.getFullYear() + '-' + ( date.getMonth() + 1 )+ '-' + ( date.getDate() + 1 )

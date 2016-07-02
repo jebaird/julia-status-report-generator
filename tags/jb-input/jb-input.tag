@@ -10,7 +10,7 @@ this.on('before-mount', function(){
         this.root.value = value;
     }
 
-    this.root.addEventListener('change', function(){
+    this.root.addEventListener('input', function(){
         window.localStorage.setItem( this.getAttribute('name'), this.value )
     })
 })
