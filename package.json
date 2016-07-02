@@ -4,7 +4,8 @@
   "description": "Tool that lets users easily log when medications where given",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node tests/server.js && echo \"Server started: http://localhost:8000\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jebaird/julia-status-report-generator/issues"
   },
-  "homepage": "https://github.com/jebaird/julia-status-report-generator#readme"
+  "homepage": "https://github.com/jebaird/julia-status-report-generator#readme",
+  "dependencies": {
+    "node-http-server": "^5.1.0"
+  }
 }
