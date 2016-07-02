@@ -1,7 +1,7 @@
 {
   "name": "julia-status-report-generator",
   "version": "1.0.0",
-  "description": "Tool that lets users easly log when medications where given",
+  "description": "Tool that lets users easily log when medications where given",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
