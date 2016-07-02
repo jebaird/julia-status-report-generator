@@ -1,8 +1,10 @@
 var server=require('node-http-server');
- 
-    server.deploy(
-        {
-            port:8000,
-            root:'./'
-        }
-    );
+
+var config = new server.Config;
+
+config.contentType['tag'] = config.contentType['html'];
+
+config.port = 8000;
+config.root = './'
+
+server.deploy( config );
