@@ -5,42 +5,47 @@
         width: 6em !important;
         display: inline;
     }
+
 </style>
 
-<form class="form-inline" type="post" onsubmit="{ submit }" id="form">
+<form class="form-inline" type="post" onsubmit="{ submitHandler }" id="form" oninvalid="{ formInvalidHandler }">
 
     <div class="form-group">
         <label for="time" class="control-label">Time</label>
             <input type="time" class="form-control" id="time" placeholder="" name="time" required onfocus="{ timeToNow }">
     </div>
     <div class="form-group">
-        <label for="" class="control-label">Item</label>
+        <label for="item" >Item</label>
             
-            <input list="medications" name="item" required>
+            <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control">
 
-            <datalist id="medications">
-                <option value="Peidasure">Peidasure</optoin>
-                <option value="Baclofen">Baclofen</optoin>
-                <option value="Clonidine">Clonidine</optoin>
-                <option value="Cypoheptadine / Periatctin">Cypoheptadine / Periatctin</optoin>
-                <option value="Omeprazole">Omeprazole</optoin>
-                <option value="Topiramate">Topiramate</optoin>
-                <option value="Mrialax">Mrialax</optoin>
-                <option value="Rubionol / Cuvposa">Rubionol / Cuvposa</optoin>
-                <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</optoin>
-                <option value="Valium / Diazepam">Valium / Diazepam</optoin>
+            <datalist id="medications" >
+
+                <option value="Baclofen" data-amount="1" data-unit="ml" >Baclofen</option>
+                <option value="Clonidine" data-amount=".5" data-unit="ml">Clonidine</option>
+                <option value="Cypoheptadine / Periatctin" data-amount="3" data-unit="ml">Cypoheptadine / Periatctin</option>
+                <option value="Rubionol / Cuvposa" data-amount="3.5" data-unit="ml">Rubionol / Cuvposa</option>
+                
+                <option value="Omeprazole" data-amount="10" data-unit="ml">Omeprazole</option>
+                <option value="Topiramate" data-amount="6" data-unit="ml">Topiramate</option>
+                <option value="Mrialax" data-amount="2" data-unit="tsp">Mrialax</option>
+
+                <option value="Peidasure" data-amount="2" data-unit="ml">Peidasure</option>
+                <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</option>
+                <option value="Valium / Diazepam">Valium / Diazepam</option>
 
             </datalist>
     </div>
 
 
     <div class="form-group __amount">
-        <label for="inputPassword3" class="control-label">Amount</label>
+        <label for="amount" class="control-label">Amount</label>
             <input type="number" step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off">
             
             <select name="unit" class="form-control form-control-small">
-                <option value="ml">ml</optoin>
-                <option value="tsp">tsp</optoin>
+                <option value="ml" title="Miilaliters">ml</option>
+                <option value="tsp" title="Teaspoon">Tsp</option>
+                <option value="tbsp" title="Tablespoon">tsp</option>
 
             </select>
     </div>
@@ -48,18 +53,24 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">submit</button>
+            <button type="submit" class="btn btn-primary">submit</button>
         </div>
     </div>
 </form>
 
 <script>
 
-submit( e ) {
-    console.log( e )
+/*
+
+    submit handler
+ */
+submitHandler( e ) {
+
     e.preventDefault();
 
-    e.target.checkValidity();
+    // TODO add btn-danger class on error
+    e.target.checkValidity()
+
 
     var values = {};
     // todo check if values gets cleaned up if we set the context to this
@@ -97,6 +108,42 @@ submit( e ) {
 
 
 
+}
+
+
+
+
+itemInputHandler( e ) {
+    
+
+    // try to find the selected item in the data list
+    var selected = e.target.value.toLowerCase();
+
+    // can't have a blank value
+    if ( selected == "" ) {
+
+        return;
+    }
+
+    // look for the selected option in the list
+    var option = [].slice.call( this.root.querySelectorAll( '#medications [data-amount][data-unit]' ) ).filter( function( option ) {
+
+            return selected === option.getAttribute('value').toLowerCase();
+    }, this );
+    
+    // do we have a match?
+    // TODO: on form submit if we don't have an option save the value and amount to localStorage, then add that option to the list
+    if ( option.length === 0 ) {
+        return;
+    }
+
+    option = option[ 0 ];
+
+    // select the prefilled values
+    this.root.querySelector( '[name="amount"]' ).value = option.getAttribute( 'data-amount' );
+    this.root.querySelector( '[name="unit"] option[value="'+ option.getAttribute('data-unit')+'"]' ).selected = true;
+
+    option = null;
 }
 
 timeToNow( e ){
