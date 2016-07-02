@@ -80,12 +80,18 @@ submitHandler( e ) {
         if ( name ) {
             values[ name ] = input.value
         }
+
+        // clear out item on submit, datalists only show the searched for options, bad user exp when entering many things
+        if ( name == 'item' ) {
+            input.value = '';
+        }
         
     }, this );
 
     
     
 
+    // add the submitted data to localStorage
     var iframe = document.createElement('iframe');
 
     iframe.style.display = 'none';
