@@ -2,11 +2,27 @@
     <html>
 
     <head>
+    
+        <title>Julia's Medication Status Report Generator</title>
+        <meta name="author" content="Jesse Baird - jebaird.com">
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta property="og:title" content="ulia's Medication Status Report Generator"/>
+        <meta property="og:image" content="https://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
+        <meta property="og:site_name" content="David Walsh Blog"/>
+        <meta property="og:description" content="Facebook's Open Graph protocol allows for web developers to turn their websites into Facebook "graph" objects, allowing a certain level of customization over how information is carried over from a non-Facebook website to Facebook when a page is 'recommended', 'liked', or just generally shared."/>
+    
+
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="bootstrap.min.css" media="all">
+        <style>
+            @media print {
+                .no-print {
+                    display: none;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -24,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date">Notes</label>
-                    <textarea name="notes" class="form-control" rows="1" riot-tag="jb-input"></textarea>
+                    <textarea name="notes" class="form-control" rows="3" riot-tag="jb-input"></textarea>
                 </div>
             </form>
 
@@ -38,37 +54,35 @@
 
             <jb-log></jb-log>
 
-         
-<!-- CONTROLS -->
 
-            <a class="btn btn-primary action--print" href="javascript://">Print</a>
-            |
-            <button type="button" class="btn btn-warning action--cleardata">Reset</button>
-
-
+            <p>
+                <a class="btn btn-primary action--print" href="javascript://">Print</a>
+                |
+                <button type="button" class="btn btn-warning action--cleardata">Reset</button>
+            </p>
+            <p>Created with &#9825; by Julia's Dad, Jesse. If you like to know more about Julia, click <a href="http://jebaird.com/about">here</a></p>
 
         </div>
 
-
-
-
-
-        <hr>
-
         <template id="printFormat">
-            <div class="container">
+            <div class="container media--print">
                 <h1>Medication report for {report-date}</h1>
 
                 <p>Julia woke up at {wokeupatnumber}</p>
 
                 <h2>History</h2>
                 {logdata}
+
+                <h3>Notes</h3>
+                {notes}
             </div>
         </template>
 
-                <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
-                <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
-                <script src="tags/jb-log-form/jb-log-form.tag" type="riot/tag"></script>
+
+
+        <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
+        <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
+        <script src="tags/jb-log-form/jb-log-form.tag" type="riot/tag"></script>
 
 
         <script src="riot_compiler.min.js"></script>
