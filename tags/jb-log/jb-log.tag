@@ -44,10 +44,10 @@
         <tr each="{ opts.entries }">
 
             <td class="no-print">
-                <button class="btn btn-danger" onclick="{remove}" title="remove this entry">X</button>
+                <button class="btn btn-danger" onclick="{remove}" title="remove this entry"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
             </td>
             <td class="jb-log__time"><time>{ getFormattedTime( time ) }<time></td>
-            <td class="jb-log__amount">{ amount }{ unit }</td>
+            <td class="jb-log__amount">{ amount } { unit }</td>
             <td class="jb-log__item">{ item }</td>
         </tr>
 
@@ -60,7 +60,14 @@
 
 
     var Storage = {
-        _iframe: document.createElement('iframe'),
+        _iframe: ( function(){
+            var iframe = document.createElement('iframe')
+
+            iframe.style.display = 'none';
+
+            return iframe;
+
+        }() ),
         get: function(key, mode) {
             var data = window.localStorage.getItem(key);
 
@@ -114,7 +121,6 @@ this.on('before-mount', function() {
 
         opts.entries = Storage.get( this.LOG_DATA_STORAGE_KEY )
     this.update()
-    console.log('before mount', this )
 
     
   })
@@ -133,8 +139,6 @@ remove( e ) {
 
     }
     var index = [].slice.call( this.root.querySelectorAll('tbody tr'), 0 ).indexOf( e.target.parentNode.parentNode )
-
-    console.log( index )
 
     var data = Storage.get( this.LOG_DATA_STORAGE_KEY )
 
