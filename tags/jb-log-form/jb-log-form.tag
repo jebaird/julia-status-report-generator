@@ -1,10 +1,13 @@
 <jb-log-form>
 
 <style scoped>
-    /*.__amount .form-control{
-        width: 6em !important;
+    .__amount .form-control{
+        width: calc(100% / 3 ) !important;
         display: inline;
-    }*/
+    }
+    .__amount .control-label {
+        display: block;
+    }
 
     form {
         border: 1px solid #eee;
@@ -14,16 +17,16 @@
 
 </style>
 
-<form class="form-inline" type="post" onsubmit="{ submitHandler }" id="form" oninvalid="{ formInvalidHandler }">
+<form class="" type="post" onsubmit="{ submitHandler }" id="form" oninvalid="{ formInvalidHandler }">
 
     <div class="form-group">
         <label for="time" class="control-label">Time</label>
-            <input type="time" class="form-control" id="time" placeholder="" name="time" required onfocus="{ timeToNow }">
+            <input type="time" class="form-control form-control-sm" id="time" placeholder="" name="time" required onfocus="{ timeToNow }">
     </div>
     <div class="form-group">
         <label for="item" >Item</label>
             
-            <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control">
+            <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control form-control-sm" placeholder="Enter in a medicaiton ">
 
             <datalist id="medications" >
 
@@ -45,15 +48,17 @@
 
 
     <div class="form-group __amount">
-        <label for="amount" class="control-label">Amount</label>
-            <input type="number" step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off">
-            
-            <select name="unit" class="form-control form-control-small">
-                <option value="ml" title="Miilaliters">ml</option>
-                <option value="tsp" title="Teaspoon">Tsp</option>
-                <option value="tbsp" title="Tablespoon">tsp</option>
 
-            </select>
+        <label for="amount" class="control-label">Amount</label>
+        <input type="number" step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off" size="4">
+                
+        <select name="unit" class="form-control form-control-small" title="Select the amount">
+            <option value="ml" title="Miilaliters">ml</option>
+            <option value="tsp" title="Teaspoon">Tsp</option>
+            <option value="tbsp" title="Tablespoon">tsp</option>
+        </select>
+        
+            
     </div>
 
 
