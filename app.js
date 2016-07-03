@@ -10,20 +10,6 @@ media--screen
 
 
 
-        /*
-         * super small templating engine
-         * http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
-         *
-         * used to display the status messages when contacting the server
-         */
-    function t(s, d) {
-        for (var p in d)
-            s = s.replace(new RegExp('{' + p + '}', 'g'), d[p]);
-        return s;
-    }
-
-
-
     function getPrettyDate( date ) {
         var dateParts = date.toString().split( ' ' ).slice(0, 4);
         return ( (dateParts.shift() + ', ' ) + dateParts.join( ' ' ) )
@@ -41,11 +27,6 @@ media--screen
     })( document.querySelector('title').innerHTML );
 
 
-    function setTitleTag(){
-            $('title').html( t($('title').html(),{
-        'report-date': $('[name="report-date"]').val()
-    }));
-    }
 
 
 
@@ -64,15 +45,18 @@ media--screen
 
      }
 
-     window.addEventListener( 'storage', (function( syncPrintableElement ){
+     var iframe = document.createElement( 'iframe' );
 
-        return function( e ){
-            console.log( e )
-            //syncPrintableElement()
-        }
-     })(syncPrintableElement))
+     iframe.style.display = 'none';
 
-     $( '[data-storage]' )
+     document.body.appendChild( iframe );
+
+
+     iframe.contentWindow.addEventListener( 'storage',  function( e ){
+            syncPrintableElement( e.key )
+        }, false )
+
+
      var elements = [].slice.call( document.querySelectorAll( '[data-storage]' ), 0 ).forEach( function( element ) {
 
         syncPrintableElement( element.getAttribute( 'data-storage' ) );

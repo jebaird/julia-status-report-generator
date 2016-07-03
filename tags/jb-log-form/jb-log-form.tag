@@ -1,9 +1,15 @@
 <jb-log-form>
 
 <style scoped>
-    .__amount .form-control{
+    /*.__amount .form-control{
         width: 6em !important;
         display: inline;
+    }*/
+
+    form {
+        border: 1px solid #eee;
+        padding: 1em;
+        background: #f2f2f2;
     }
 
 </style>
@@ -52,9 +58,7 @@
 
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>submit</button>
-        </div>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>submit</button>
     </div>
 </form>
 

@@ -117,7 +117,7 @@ this._storageEventHander = function(e){
 this.on('before-mount', function() {
 
     // before the tag is mounted
-    window.addEventListener( 'storage', this._storageEventHander.bind( this ) )
+    window.addEventListener( 'storage', this._storageEventHander.bind( this ), false )
 
         opts.entries = Storage.get( this.LOG_DATA_STORAGE_KEY )
     this.update()
