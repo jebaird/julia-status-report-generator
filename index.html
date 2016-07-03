@@ -3,35 +3,60 @@
 
     <head>
     
-        <title>Julia's Medication Status Report Generator</title>
+        <title>Julia's Medication Report Generator</title>
         <meta name="author" content="Jesse Baird - jebaird.com">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta property="og:title" content="ulia's Medication Status Report Generator"/>
-        <meta property="og:image" content="https://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
-        <meta property="og:site_name" content="David Walsh Blog"/>
-        <meta property="og:description" content="Facebook's Open Graph protocol allows for web developers to turn their websites into Facebook "graph" objects, allowing a certain level of customization over how information is carried over from a non-Facebook website to Facebook when a page is 'recommended', 'liked', or just generally shared."/>
+        <meta property="og:title" content="Medication Report Generator"/>
+        <meta property="og:image" content="http://jebaird.com/julia-status-report-generator/images/juila1.jpg"/>
+        <meta property="og:site_name" content="Medication Report Generator - jebaird.com"/>
+        <meta property="og:description" content="Easily generate medication a report and or history"/>
     
 
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="bootstrap.min.css" media="all">
+        <link rel="stylesheet" href="bootstrap.min.css">
         <style>
-            @media print {
+
+            @media screen {
+                .media--print,
                 .no-print {
                     display: none;
                 }
+            }
+
+            @media print {
+
+
+                html, 
+                body {
+                    width: 1200px !important;
+                }
+
+
+                .media--screen,
+                .no-print {
+                    display:none !important;
+                }
+
+                .hidden{display:none;visibility:hidden}
+                .visible-phone{display:none!important}
+                .visible-tablet{display:none!important}
+                .hidden-desktop{display:none!important}
+                .visible-desktop{display:inherit!important}
+
             }
         </style>
     </head>
 
     <body>
-        <div class="container no-print">
+        <div class="container ">
         
-        <h2>Julia's Medication Status Report Generator</h2>
 
-            <form class="form">
-                <div class="form-group">
+        <h1 class="media--screen">Medication Report Generator</h1>
+
+            <form class="form media--screen">
+                <div class="form-group" >
                     <label for="date">Report For</label>
                     <input type="date" class="form-control " name="report-date" riot-tag="jb-input">
                 </div>
@@ -47,40 +72,57 @@
             </form>
 
 
-                <h1>Log <button type="button" class="btn btn-success action--show-log-form"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></h1>
+
+            <div class="media--print">
+                
+                <h1>Medication report for <span data-storage="report-date"></span></h1>
+
+                <p>Julia woke up at <span data-storage="wokeupatnumber"></span></p>
 
 
-                <div class="log-form">
-                    <jb-log-form></jb-log-form>
             </div>
 
+
+                <div class="log-form row media--screen">
+                    <div class="col-sm-1 col-sm-offet-1"><h4>Log</h4></div>
+                    <div class=" col-sm-10">
+                        <jb-log-form></jb-log-form>
+                        
+                    </div>
+                
+                </div>
+
+            <h2>History</h2>
             <jb-log></jb-log>
 
 
-            <p>
-                <a class="btn btn-primary action--print" href="javascript://">Print</a>
-                |
-                <button type="button" class="btn btn-warning action--cleardata">Reset</button>
-            </p>
-            <p>Created with &#9825; by Julia's Dad, Jesse. Learn  more about Jesse &amp; Julia <a href="http://jebaird.com/about">here</a></p>
+            <div class="media--print">
+                <h3>Notes</h3>
+                <div data-storage="notes"></div>
+            </div>
+
+            <div class="media--screen">
+                <p>
+                    <a class="btn btn-primary action--print" href="javascript://">Print</a>
+                    |
+                    <button type="button" class="btn btn-warning action--cleardata">Reset</button>
+                </p>
+                <p>Created with &#9825; by Julia's Dad, Jesse. Learn  more about Jesse &amp; Julia <a href="http://jebaird.com/about">here</a></p>
+
+                <p>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle no-print"
+                         style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-6719545231132925"
+                         data-ad-slot="4085872493"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </p>
+                
+            </div>
 
         </div>
-
-        <template id="printFormat">
-            <div class="container media--print">
-                <h1>Medication report for {report-date}</h1>
-
-                <p>Julia woke up at {wokeupatnumber}</p>
-
-                <h2>History</h2>
-                {logdata}
-
-                <p><b>Notes</b></p>
-                {notes}
-            </div>
-        </template>
-
-
 
         <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
         <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
@@ -98,15 +140,7 @@
 riot.mount('*')
 </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Julia status report generator -1 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-6719545231132925"
-     data-ad-slot="4085872493"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 
     </body>
 

@@ -1,6 +1,6 @@
 (function() {
     /*
-
+media--screen
         Todo: 
          * add clear button
          * restore table markup
@@ -29,63 +29,72 @@
         return ( (dateParts.shift() + ', ' ) + dateParts.join( ' ' ) )
     }
 
-    function setDocTitle( date ) {
-        
-        if ( date === null || typeof date != 'string' ) {
 
-            date = date.getFullYear() + '-' + ( date.getMonth() + 1 )+ '-' + ( date.getDate() + 1 )
+    var togglePrinterFriendlyTitleTag = (function togglePrinterFriendlyTitleTag( orgTitle ){
+
+        return function( mediaIsPrint ) {
+
+            document.querySelector('title').innerHTML = ( mediaIsPrint ) ? window.sessionStorage.getItem( 'report-date' ) : orgTitle;
+
         }
-        document.title = "" + date + ' - Medication Report'
+
+    })( document.querySelector('title').innerHTML );
+
+
+    function setTitleTag(){
+            $('title').html( t($('title').html(),{
+        'report-date': $('[name="report-date"]').val()
+    }));
     }
 
-    $('[name="report-date"]').on('input', function(){
-        setDocTitle( this.valueAsDate )
-    })
 
-    setDocTitle( window.localStorage.getItem('report-date') )
 
-    // actions
+    /*
+        print version
+
+        keep the prinable version
+     */ 
     
- //https://www.tjvantoll.com/2012/06/15/detecting-print-requests-with-javascript/
-    var beforePrint = function() {
+     var syncPrintableElement = function( key ) {
+        var target = document.querySelector( '[data-storage="' + key + '"]' );
+
+        var data = window.localStorage.getItem( key );
+
+        target.innerHTML = data;
+
+     }
+
+     window.addEventListener( 'storage', (function( syncPrintableElement ){
+
+        return function( e ){
+            console.log( e )
+            //syncPrintableElement()
+        }
+     })(syncPrintableElement))
+
+     $( '[data-storage]' )
+     var elements = [].slice.call( document.querySelectorAll( '[data-storage]' ), 0 ).forEach( function( element ) {
+
+        syncPrintableElement( element.getAttribute( 'data-storage' ) );
+
+    } );
 
 
-        var date = $('[name="report-date"]')[0].valueAsDate;
 
-        // fir jul 01 2016
-               var printVars = {
-            'report-date': getPrettyDate( date ),
-            'wokeupatnumber': $('[name="wokeupatnumber"]').val(),
-            'logdata': $('<div>').append($('.log-table').clone()).html(),
-            'notes': $('[name="notes"]').val().replace(/\n/g, "<br />")
-        };
 
-      
-        var printTemplate = t($('#printFormat').html(), printVars );
-        
-        $( 'body' )
-            .append( printTemplate );
-            };
 
-            var afterPrint = function() {
 
-                
-                 $( 'body' ).find('.media--print').remove()
-            };
+    if (window.matchMedia) {
 
-            if (window.matchMedia) {
-                var mediaQueryList = window.matchMedia('print');
-                mediaQueryList.addListener(function(mql) {
-                    if (mql.matches) {
-                        beforePrint();
-                    } else {
-                        afterPrint();
-                    }
-                });
-            }
+        var mediaQueryList = window.matchMedia('print');
 
-            window.onbeforeprint = beforePrint;
-            window.onafterprint = afterPrint;
+        mediaQueryList.addListener(function(mql) {
+
+            togglePrinterFriendlyTitleTag( mql.matches );
+
+ 
+        });
+    }
 
 
     $('.action--print').click(function(e) {
