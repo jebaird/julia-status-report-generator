@@ -90,7 +90,7 @@ media--screen
 
     $('.action--cleardata').click(function() {
         if (confirm('Are you sure you want to clear all data? This action can\'t be undone')) {
-            Storage.clear();
+            window.localStorage.clear();
             location = location
         }
     })
