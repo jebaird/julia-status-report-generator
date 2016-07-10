@@ -39,7 +39,7 @@
                 <option value="Topiramate" data-amount="6" data-unit="ml">Topiramate</option>
                 <option value="Mrialax" data-amount="2" data-unit="tsp">Mrialax</option>
 
-                <option value="Peidasure" data-amount="2" data-unit="ml">Peidasure</option>
+                <option value="Peidasure" data-amount="3" data-unit="oz">Peidasure</option>
                 <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</option>
                 <option value="Valium / Diazepam">Valium / Diazepam</option>
 
@@ -54,6 +54,7 @@
                 
         <select name="unit" class="form-control form-control-small" title="Select the amount">
             <option value="ml" title="Miilaliters">ml</option>
+            <option value="oz" title="Ounce">oz</option>
             <option value="tsp" title="Teaspoon">Tsp</option>
             <option value="tbsp" title="Tablespoon">tsp</option>
         </select>
