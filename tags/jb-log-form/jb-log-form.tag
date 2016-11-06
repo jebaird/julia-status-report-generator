@@ -31,17 +31,15 @@
             <datalist id="medications" >
 
                 <option value="Baclofen" data-amount="1" data-unit="ml" >Baclofen</option>
-                <option value="Clonidine" data-amount=".5" data-unit="ml">Clonidine</option>
                 <option value="Cypoheptadine / Periatctin" data-amount="3" data-unit="ml">Cypoheptadine / Periatctin</option>
                 <option value="Rubionol / Cuvposa" data-amount="3.5" data-unit="ml">Rubionol / Cuvposa</option>
                 
                 <option value="Omeprazole" data-amount="10" data-unit="ml">Omeprazole</option>
-                <option value="Topiramate" data-amount="6" data-unit="ml">Topiramate</option>
-                <option value="Mrialax" data-amount="2" data-unit="tsp">Mrialax</option>
+                <option value="Topiramate" data-amount="8" data-unit="ml">Topiramate</option>
+                <option value="Mrialax" data-amount="3" data-unit="tsp">Mrialax</option>
 
                 <option value="Peidasure" data-amount="3" data-unit="oz">Peidasure</option>
-                <option value="Hycent / HYDROcodeone">Hycent / HYDROcodeone</option>
-                <option value="Valium / Diazepam">Valium / Diazepam</option>
+                <option value="Water" data-amount="2" data-unit="oz">Water</option>
 
             </datalist>
     </div>
