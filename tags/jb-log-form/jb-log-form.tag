@@ -15,15 +15,42 @@
         background: #f2f2f2;
     }
 
+    .form-group--event {
+        display: none;
+    }
+
+    /* remove after adding support for events */
+    .radio {
+        display: none;
+    }
+
 </style>
 
 <form class="" type="post" onsubmit="{ submitHandler }" id="form" oninvalid="{ formInvalidHandler }">
+
+
+    <div class="form-group">
+        <div class="radio">
+        <label class="control-label">
+            <input type="radio" name="type" value="item" checked onchange="{ typeHandler }">
+            Medication
+            </label>
+        </div>
+        <div class="radio">
+        <label class="control-label">
+            <input type="radio" name="type" value="event" onchange="{ typeHandler }">
+            Event
+            </label>
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="time" class="control-label">Time</label>
             <input type="time" class="form-control form-control-sm" id="time" placeholder="" name="time" required onfocus="{ timeToNow }">
     </div>
-    <div class="form-group">
+
+
+    <div class="form-group form-group--item">
         <label for="item" >Item</label>
             
             <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control form-control-sm" placeholder="Enter in a medicaiton ">
@@ -31,26 +58,32 @@
             <datalist id="medications" >
 
                 <option value="Baclofen" data-amount="1" data-unit="ml" >Baclofen</option>
-                <option value="Cypoheptadine / Periatctin" data-amount="3" data-unit="ml">Cypoheptadine / Periatctin</option>
-                <option value="Rubionol / Cuvposa" data-amount="3.5" data-unit="ml">Rubionol / Cuvposa</option>
-                
                 <option value="Omeprazole" data-amount="10" data-unit="ml">Omeprazole</option>
+                
+                <option value="Cypoheptadine / Periatctin" data-amount="3" data-unit="ml">Cypoheptadine / Periatctin</option>
+                <option value="Cuvposa / Rubionol" data-amount="3.5" data-unit="ml"> Cuvposa / Rubionol</option>
+                
                 <option value="Topiramate" data-amount="8" data-unit="ml">Topiramate</option>
-                <option value="Mrialax" data-amount="3" data-unit="tsp">Mrialax</option>
 
+                <option value="Mrialax" data-amount="3" data-unit="tsp">Mrialax</option>
                 <option value="Peidasure" data-amount="3" data-unit="oz">Peidasure</option>
+                <option value="Peidalite" data-amount="3" data-unit="oz">Peidalite</option>
                 <option value="Water" data-amount="2" data-unit="oz">Water</option>
+                
+
+                <option value="Tylenol" data-amount="5" data-unit="ml">Tylenol</option>
+                <option value="Benadryl" data-amount="5" data-unit="ml">Benadryl</option>
+
 
             </datalist>
     </div>
 
-
-    <div class="form-group __amount">
+        <div class="form-group __amount form-group--item">
 
         <label for="amount" class="control-label">Amount</label>
-        <input type="number" step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off" size="4">
+        <input type="number" required step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off" size="4">
                 
-        <select name="unit" class="form-control form-control-small" title="Select the amount">
+        <select name="unit" required class="form-control form-control-small" title="Select the amount">
             <option value="ml" title="Miilaliters">ml</option>
             <option value="oz" title="Ounce">oz</option>
             <option value="tsp" title="Teaspoon">Tsp</option>
@@ -59,6 +92,25 @@
         
             
     </div>
+
+    <div class="form-group form-group--event">
+        <label for="item" >Event</label>
+            
+            <input list="events" name="event" class="form-control form-control-sm" placeholder="Event an event">
+
+            <datalist id="events" >
+                <option>Puked / Threw up</option>
+                <option>Napped</option>
+                <option>Fussy</option>
+                <option>In Pain / Discomfort</option>
+
+            </datalist>
+    </div>
+
+
+
+
+
 
 
     <div class="form-group">
@@ -124,9 +176,22 @@ submitHandler( e ) {
 
 }
 
+typeHandler( e ) {
+
+    var value = e.target.value;
+
+    console.log( value )
+
+    var groups = [].slice.call( this.root.querySelectorAll( '.form-group--event, .form-group--item') )
+
+    
+
+    
+
+}
 
 
-
+/* medication handler */
 itemInputHandler( e ) {
     
 
