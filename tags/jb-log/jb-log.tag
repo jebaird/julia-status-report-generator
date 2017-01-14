@@ -46,7 +46,7 @@
             <td class="no-print">
                 <button class="btn btn-danger" onclick="{remove}" title="remove this entry"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
             </td>
-            <td class="jb-log__time"><time>{ getFormattedTime( time ) }<time></td>
+            <td class="jb-log__time"><time>{ getFormattedTime( time ) }</time></td>
             <td class="jb-log__amount">{ amount } { unit }</td>
             <td class="jb-log__item">{ item }</td>
         </tr>

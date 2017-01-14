@@ -17,6 +17,36 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="bootstrap.min.css">
         <style>
+
+        .copied::after {
+  position: absolute;
+  top: 12%;
+  right: 110%;
+  display: block;
+  content: "Copied To Clipboard";
+  font-size: 0.75em;
+  padding: 2px 3px;
+  color: #fff;
+  background-color: #22a;
+  border-radius: 3px;
+  opacity: 0;
+  will-change: opacity, transform;
+  animation: showcopied 1.5s ease;
+}
+
+@keyframes showcopied {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
             @media screen {
                 .media--print {
                     display: none;
@@ -58,29 +88,30 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <Span class="navbar-brand">
-        Medication Report Generator
-      </span>
+                        <Span class="navbar-brand">Medication Report Generator</span>
                     
 
-                    <button type="button" class="btn btn-primary navbar-btn action--print">Print</button>
-                    <button type="button" class="btn btn-warning navbar-btn action--cleardata">Reset</button>
-                    <button type="button" class="btn btn-warning navbar-btn action--json">JScon</button>
+                    <button type="button" class="btn btn-primary navbar-btn action--log">Log</button>
+
+                    <button type="button" class="btn btn-default navbar-btn action--print">Print</button>
+                    <button type="button" class="btn btn-danger navbar-btn action--cleardata">Reset</button>
+
+                    <!-- <button type="button" class="btn btn-warning navbar-btn action--json">JScon</button> -->
                 </div>
 
 
-<form class="navbar-form navbar-left" role="search">
-  <div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Share this report" readonly data-storage="share-url">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-</form>
+                <div class="navbar-form navbar-left" >
+                  <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <input type="text" class="form-control share-url" placeholder="Share this report" readonly title="url for this report" >
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-copytarget=".share-url">Share</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                </div>
 
 
             </nav>
@@ -102,18 +133,13 @@
             <div class="media--print">
 
                 <h1>Medication report for <span data-storage="report-date"></span></h1>
-
-
-
-
             </div>
 
 
-            <jb-dialog title="Log" class="media--screen" opened>
+            <jb-dialog title="Add an event to the schedule" class="media--screen log-form" style="display: none;">
                 <yield to="content">
                     <jb-log-form></jb-log-form>
                 </yield>
-
             </jb-dialog>
 
 
@@ -145,7 +171,7 @@
 
         </div>
 
-        </div>
+        
 
         <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
         <script src="tags/jb-dialog/jb-dialog.tag" type="riot/tag"></script>

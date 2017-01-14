@@ -23,8 +23,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="{ closeHandler }">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" onclick="{ closeHandler }">Done</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
             </div>
         </div>
@@ -37,7 +37,11 @@
 
 
             closeHandler(e) {
-                this.root.parentNode.removeChild(this.root)
+                // maybe add this in later
+                //this.root.parentNode.removeChild(this.root)
+                //
+                //for now just hide the element
+                this.root.style.display = "none"
             }
         </script>
 
