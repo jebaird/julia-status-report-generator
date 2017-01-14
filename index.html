@@ -2,66 +2,92 @@
     <html>
 
     <head>
-    
+
         <title>Julia's Medication Report Generator</title>
         <meta name="author" content="Jesse Baird - jebaird.com">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta property="og:title" content="Medication Report Generator"/>
-        <meta property="og:image" content="http://jebaird.com/julia-status-report-generator/images/juila1.jpg"/>
-        <meta property="og:site_name" content="Medication Report Generator - jebaird.com"/>
-        <meta property="og:description" content="Easily generate medication a report and or history"/>
-    
+        <meta property="og:title" content="Medication Report Generator" />
+        <meta property="og:image" content="http://jebaird.com/julia-status-report-generator/images/juila1.jpg" />
+        <meta property="og:site_name" content="Medication Report Generator - jebaird.com" />
+        <meta property="og:description" content="Easily generate medication a report and or history" />
+
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="bootstrap.min.css">
         <style>
-
-
-            .log-form {
-                margin: 4em 0;
-            }
-
             @media screen {
-
                 .media--print {
                     display: none;
                 }
             }
-
+            
             @media print {
-
-
-                html, 
+                html,
                 body {
                     width: 1200px !important;
                 }
-
-
                 .media--screen,
                 .no-print {
-                    display:none !important;
+                    display: none !important;
                 }
-
-                .hidden{display:none;visibility:hidden}
-                .visible-phone{display:none!important}
-                .visible-tablet{display:none!important}
-                .hidden-desktop{display:none!important}
-                .visible-desktop{display:inherit!important}
-
+                .hidden {
+                    display: none;
+                    visibility: hidden
+                }
+                .visible-phone {
+                    display: none!important
+                }
+                .visible-tablet {
+                    display: none!important
+                }
+                .hidden-desktop {
+                    display: none!important
+                }
+                .visible-desktop {
+                    display: inherit!important
+                }
             }
         </style>
     </head>
 
     <body>
         <div class="container ">
-        
 
-        <h1 class="media--screen">Medication Report Generator</h1>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <Span class="navbar-brand">
+        Medication Report Generator
+      </span>
+                    
+
+                    <button type="button" class="btn btn-primary navbar-btn action--print">Print</button>
+                    <button type="button" class="btn btn-warning navbar-btn action--cleardata">Reset</button>
+                    <button type="button" class="btn btn-warning navbar-btn action--json">JScon</button>
+                </div>
+
+
+<form class="navbar-form navbar-left" role="search">
+  <div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Share this report" readonly data-storage="share-url">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+</form>
+
+
+            </nav>
+
 
             <form class="form media--screen">
-                <div class="form-group" >
+                <div class="form-group">
                     <label for="date">Report For</label>
                     <input type="date" class="form-control " name="report-date" riot-tag="jb-input">
                 </div>
@@ -74,39 +100,22 @@
 
 
             <div class="media--print">
-                
+
                 <h1>Medication report for <span data-storage="report-date"></span></h1>
 
-                
+
 
 
             </div>
-<!-- Modal -->
-<!-- <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Hello world
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div> -->
 
-                <div class="log-form row media--screen">
-                    <div class="col-sm-1 col-sm-offet-1"><h4>Log</h4></div>
-                    <div class=" col-sm-10">
-                        <jb-log-form></jb-log-form>
-                        
-                    </div>
-                
-                </div>
+
+            <jb-dialog title="Log" class="media--screen" opened>
+                <yield to="content">
+                    <jb-log-form></jb-log-form>
+                </yield>
+
+            </jb-dialog>
+
 
             <h2>Schedule</h2>
             <jb-log></jb-log>
@@ -117,46 +126,35 @@
                 <div data-storage="notes"></div>
             </div>
 
-            <div class="media--screen">
-                <div class="row">
-                    <p>
-                        <a class="btn btn-primary action--print" href="javascript://">Print</a>
-                        |
-                        <button type="button" class="btn btn-warning action--cleardata">Reset</button>
-                        |
-                        <button type="button" class="btn btn-warning action--json">JScon</button>
-                    </p>
-                    
-                </div>
-                <div class="row">
-                    
-                    <p>Created with &#9825; by Julia's Dad, Jesse. Learn  more about Jesse &amp; Julia <a href="http://jebaird.com/about">here</a></p>
-                    
-                </div>
+
+        </div>
+        <div class="row">
+
+            <p>Created with &#9825; by Julia's Dad, Jesse. Learn more about Jesse &amp; Julia <a href="http://jebaird.com/about">here</a></p>
+
+        </div>
 
 
-                <p>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle no-print"
-                         style="display:inline-block;width:728px;height:90px"
-                         data-ad-client="ca-pub-6719545231132925"
-                         data-ad-slot="4085872493"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </p>
-                
-            </div>
+        <p>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle no-print" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6719545231132925" data-ad-slot="4085872493"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </p>
+
+        </div>
 
         </div>
 
         <script src="tags/jb-log/jb-log.tag" type="riot/tag"></script>
+        <script src="tags/jb-dialog/jb-dialog.tag" type="riot/tag"></script>
         <script src="tags/jb-input/jb-input.tag" type="riot/tag"></script>
         <script src="tags/jb-log-form/jb-log-form.tag" type="riot/tag"></script>
 
 
         <script src="riot_compiler.min.js"></script>
-        
+
         <script src="vendor/base64.js"></script>
         <script src="vendor/crc32.js"></script>
         <script src="vendor/rawdeflate.js"></script>
@@ -166,10 +164,10 @@
         <script src="JSONC.js"></script>
         <script src="app.js"></script>
 
-<!-- mount normally -->
-<script>
-riot.mount('*')
-</script>
+        <!-- mount normally -->
+        <script>
+            riot.mount('*')
+        </script>
 
 
 

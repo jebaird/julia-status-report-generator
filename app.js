@@ -15,6 +15,19 @@ media--screen
         return ( (dateParts.shift() + ', ' ) + dateParts.join( ' ' ) )
     }
 
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+
+    function getHashParam( name ) {
+        var lochash    = location.hash.substr(1);
+        return lochash.substr(lochash.indexOf( name + '=' ) ).split('&')[0].split('=')[1];
+    }
+
 
     var togglePrinterFriendlyTitleTag = (function togglePrinterFriendlyTitleTag( orgTitle ){
 
@@ -86,6 +99,29 @@ media--screen
     }
 
 
+
+    var dataFromHash = getHashParam('d');
+    
+    if ( dataFromHash !== undefined ) {
+
+        try {
+            dataFromHash = JSONC.unpack( decodeURIComponent( dataFromHash ) );
+        } catch( e ) {
+            alert( "There was an error loading that " + e )
+        }
+        
+
+        for( var key in dataFromHash ) {
+            window.localStorage.setItem( key, dataFromHash[ key ] );
+        }
+
+        // prevent them from overriding any changes they may have made if they refresh
+        history.replaceState(null, null, '#!/');
+
+
+        alert( 'Data loaded from shared URL')
+    }
+
     /*
     App Actions
     ############################################## */
@@ -111,7 +147,7 @@ media--screen
 
         // console.log( JSONC.compress( JSON.stringify( window.localStorage )  ) )
         // 
-        var packed = JSONC.pack( window.localStorage );
+        var packed = encodeURIComponent( JSONC.pack( window.localStorage ) );
 
         if ( packed.length > 2000 ) {
             alert( "Data could be corrupted")
@@ -119,7 +155,7 @@ media--screen
 
         console.log( packed )
 
-        console.log( JSONC.unpack( packed ))
+        console.log( JSONC.unpack( decodeURIComponent( packed ) ))
 
     }
 

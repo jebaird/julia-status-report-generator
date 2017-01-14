@@ -10,9 +10,7 @@
     }
 
     form {
-        border: 1px solid #eee;
-        padding: 1em;
-        background: #f2f2f2;
+
     }
 
     .form-group--event {
@@ -60,8 +58,8 @@
                 <option value="Baclofen" data-amount="1" data-unit="ml" >Baclofen</option>
                 <option value="Omeprazole" data-amount="10" data-unit="ml">Omeprazole</option>
                 
-                <option value="Cypoheptadine / Periatctin" data-amount="3" data-unit="ml">Cypoheptadine / Periatctin</option>
-                <option value="Cuvposa / Rubionol" data-amount="3.5" data-unit="ml"> Cuvposa / Rubionol</option>
+                <option value="Cypoheptadine" data-amount="3" data-unit="ml">Cypoheptadine</option>
+                <option value="Rubionol" data-amount="3.5" data-unit="ml">Rubionol</option>
                 
                 <option value="Topiramate" data-amount="8" data-unit="ml">Topiramate</option>
 
@@ -84,7 +82,7 @@
         <input type="number" required step=".25" min="0" value="1" class="form-control form-control-small" name="amount" placeholder="" autocomplete="off" size="4">
                 
         <select name="unit" required class="form-control form-control-small" title="Select the amount">
-            <option value="ml" title="Miilaliters">ml</option>
+            <option value="ml" title="Milliliter">ml</option>
             <option value="oz" title="Ounce">oz</option>
             <option value="tsp" title="Teaspoon">Tsp</option>
             <option value="tbsp" title="Tablespoon">tsp</option>
@@ -112,14 +110,18 @@
 
 
 
-
+<!-- 
     <div class="form-group">
         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>submit</button>
-    </div>
+    </div> -->
 </form>
 
 <script>
 
+
+this.on( 'input', function(){
+    console.log( 'test')
+})
 /*
 
     submit handler
@@ -180,7 +182,7 @@ typeHandler( e ) {
 
     var value = e.target.value;
 
-    console.log( value )
+    
 
     var groups = [].slice.call( this.root.querySelectorAll( '.form-group--event, .form-group--item') )
 
