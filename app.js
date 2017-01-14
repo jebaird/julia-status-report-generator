@@ -80,19 +80,17 @@ media--screen
         });
     }
 
-
-    $('.action--print').click(function(e) {
-
+    document.querySelector( '.action--print' ).onclick = function() {
         window.print()
+    }
 
-    });
 
-
-    $('.action--cleardata').click(function() {
+    document.querySelector( '.action--cleardata' ).onclick = function() {
         if (confirm('Are you sure you want to clear all data? This action can\'t be undone')) {
             window.localStorage.clear();
             location = location
         }
-    })
+    }
+
 
 })()
