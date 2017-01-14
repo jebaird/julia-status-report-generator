@@ -37,7 +37,12 @@ media--screen
      */ 
     
      var syncPrintableElement = function( key ) {
+        
         var target = document.querySelector( '[data-storage="' + key + '"]' );
+
+        if ( target == null ) {
+            return;
+        }
 
         var data = window.localStorage.getItem( key );
 
@@ -80,6 +85,11 @@ media--screen
         });
     }
 
+
+    /*
+    App Actions
+    ############################################## */
+
     document.querySelector( '.action--print' ).onclick = function() {
         window.print()
     }
@@ -90,6 +100,27 @@ media--screen
             window.localStorage.clear();
             location = location
         }
+    }
+
+
+    document.querySelector( '.action--json' ).onclick = function(){
+        console.log( window.localStorage );
+        
+
+        // console.log( JSONC.compress( window.localStorage ) )
+
+        // console.log( JSONC.compress( JSON.stringify( window.localStorage )  ) )
+        // 
+        var packed = JSONC.pack( window.localStorage );
+
+        if ( packed.length > 2000 ) {
+            alert( "Data could be corrupted")
+        }
+
+        console.log( packed )
+
+        console.log( JSONC.unpack( packed ))
+
     }
 
 
