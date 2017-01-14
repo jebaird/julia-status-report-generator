@@ -113,7 +113,7 @@ media--screen
 
         // update the url for sharing
         
-        document.querySelector( '.share-url' ).value = window.location.origin + '#!/d=' + encodeURIComponent( JSONC.pack( window.localStorage ) );
+        document.querySelector( '.share-url' ).value = window.location.origin + window.location.pathname + '#!/d=' + encodeURIComponent( JSONC.pack( window.localStorage ) );
 
     }, false)
 
@@ -187,7 +187,7 @@ media--screen
     document.querySelector('.action--cleardata').onclick = function() {
         if (confirm('Are you sure you want to clear all data? This action can\'t be undone')) {
             window.localStorage.clear();
-            location = location.origin
+            location = location
         }
     }
 
