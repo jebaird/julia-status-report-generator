@@ -81,7 +81,23 @@
 
 
             </div>
-
+<!-- Modal -->
+<!-- <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Hello world
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div> -->
 
                 <div class="log-form row media--screen">
                     <div class="col-sm-1 col-sm-offet-1"><h4>Log</h4></div>
@@ -107,6 +123,8 @@
                         <a class="btn btn-primary action--print" href="javascript://">Print</a>
                         |
                         <button type="button" class="btn btn-warning action--cleardata">Reset</button>
+                        |
+                        <button type="button" class="btn btn-warning action--json">JScon</button>
                     </p>
                     
                 </div>
@@ -138,10 +156,15 @@
 
 
         <script src="riot_compiler.min.js"></script>
-
-
         
-        <script type="text/javascript" src="app.js"></script>
+        <script src="vendor/base64.js"></script>
+        <script src="vendor/crc32.js"></script>
+        <script src="vendor/rawdeflate.js"></script>
+        <script src="vendor/rawinflate.js"></script>
+        <script src="vendor/gzip.js"></script>
+
+        <script src="JSONC.js"></script>
+        <script src="app.js"></script>
 
 <!-- mount normally -->
 <script>
