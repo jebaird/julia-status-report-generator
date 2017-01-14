@@ -165,7 +165,7 @@ media--screen
         history.replaceState(null, null, '#!/');
 
 
-        alert('Data loaded from shared URL')
+        //alert('Data loaded from shared URL')
     }
 
 
@@ -187,7 +187,7 @@ media--screen
     document.querySelector('.action--cleardata').onclick = function() {
         if (confirm('Are you sure you want to clear all data? This action can\'t be undone')) {
             window.localStorage.clear();
-            location = location
+            location = location.origin
         }
     }
 
