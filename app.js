@@ -185,7 +185,7 @@ media--screen
 
 
     document.querySelector('.action--cleardata').onclick = function() {
-        if (confirm('Are you sure you want to clear all data? This action can\'t be undone')) {
+        if (confirm('Are you sure you want to "DELETE" this schedule? This action can\'t be undone')) {
             window.localStorage.clear();
             location = location
         }
