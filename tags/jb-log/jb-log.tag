@@ -15,6 +15,16 @@
         text-align: right;
     }
 
+    .btn-danger {
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    tr:hover .btn-danger {
+        visibility: visible;
+        pointer-events: initial;
+    }
+
 /*     tr > td:first-of-type {
         visibility: hidden;
         opacity: 0;
@@ -32,10 +42,12 @@
 <table class="table table-striped log-table">
     <thead>
         <tr>
-            <th class="no-print"><br></th>
             <th class="jb-log__time">Time</th>
             <th class="jb-log__amount">Amt</th>
             <th class="jb-log__item">Item</th>
+            <th class="no-print">
+                <button class="jb-log__sort btn btn-default btn-xs" title="Sort by time" onclick="{sort}">Sort</button>
+            </th>
 
         </tr>
     </thead>
@@ -43,12 +55,12 @@
 
         <tr each="{ opts.entries }">
 
-            <td class="no-print">
-                <button class="btn btn-danger" onclick="{remove}" title="remove this entry"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-            </td>
             <td class="jb-log__time"><time>{ getFormattedTime( time ) }</time></td>
             <td class="jb-log__amount">{ amount } { unit }</td>
             <td class="jb-log__item">{ item }</td>
+            <td class="no-print">
+                <button class="btn btn-danger btn-sm" onclick="{remove}" title="remove this entry"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+            </td>
         </tr>
 
 
@@ -130,7 +142,9 @@ this.on('unmount', function() {
     window.removeEventListener( 'storage', this._storageEventHander )
   })
 
-
+/*
+    remove a row
+ */
 remove( e ) {
     console.log( this, e)
   if (!confirm('Are you sure you want to remove this row?')) {
@@ -146,8 +160,23 @@ remove( e ) {
 
     Storage.set( this.LOG_DATA_STORAGE_KEY, data );
 
+}
+/*
+    sort entries by date and time
+ */
+sort(){
 
+    var data = Storage.get( this.LOG_DATA_STORAGE_KEY );
 
+    data.sort( function( a, b ) {
+        var atime = +( a.time.replace(':', '' ) )
+        var btime = +( b.time.replace(':', '' ) )
+        
+        return atime > btime;
+    } )
+
+    
+    Storage.set( this.LOG_DATA_STORAGE_KEY, data );
 }
 
 </script>
