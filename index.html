@@ -19,34 +19,39 @@
         <style>
 
         .copied::after {
-  position: absolute;
-  top: 12%;
-  right: 110%;
-  display: block;
-  content: "Copied To Clipboard";
-  font-size: 0.75em;
-  padding: 2px 3px;
-  color: #fff;
-  background-color: #22a;
-  border-radius: 3px;
-  opacity: 0;
-  will-change: opacity, transform;
-  animation: showcopied 1.5s ease;
-}
+              position: absolute;
+              top: 0;
+              right: 0;
+              display: block;
+              content: "Link Copied To Clipboard";
+              font-size: 1em;
+              padding: .3em 1em;
+              color: #fff;
+              background-color: #5cb85c;
+              border: 1px solid #4cae4c;
+              border-radius: 3px;
+              opacity: 0;
+              will-change: opacity, transform;
+              animation: showcopied 3s ease;
+            }
 
-@keyframes showcopied {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-  }
-}
+            @keyframes showcopied {
+              0% {
+                opacity: 1;
+                transform: translateX(100%);
+              }
+              30% {
+                opacity: 1;
+                transform: translateX(0);
+              }
+              80% {
+                opacity: 1;
+              }
+
+              100% {
+                opacity: 0;
+              }
+            }
             @media screen {
                 .media--print {
                     display: none;
@@ -88,29 +93,37 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <Span class="navbar-brand">Medication Report Generator</span>
+                        <Span class="navbar-brand"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Medication Scheduler</span>
                     
 
-                    <button type="button" class="btn btn-primary navbar-btn action--log">Log</button>
-
-                    <button type="button" class="btn btn-default navbar-btn action--print">Print</button>
-                    <button type="button" class="btn btn-danger navbar-btn action--cleardata">Reset</button>
+                    
 
                     <!-- <button type="button" class="btn btn-warning navbar-btn action--json">JScon</button> -->
                 </div>
 
 
-                <div class="navbar-form navbar-left" >
-                  <div class="row">
-                  <div class="col-lg-6">
-                    <div class="input-group">
-                      <input type="text" class="form-control share-url" placeholder="Share this report" readonly title="url for this report" >
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" data-copytarget=".share-url">Share</button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <div class="navbar-left" >
+
+                    <button type="button" class="btn btn-primary btn-sm navbar-btn action--log" title="Add a new even or item to this schedule">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Log
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm navbar-btn action--print" title="Print this schedule">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                        Print
+                    </button>
+                    
+                    <input type="text" class="form-control share-url hidden"  placeholder="Share this report" readonly title="url for this report" >
+                    
+                    <button class="btn btn-default btn-sm" type="button" data-copytarget=".share-url" title="Share a link to this schedule">
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                        Share Link
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm navbar-btn action--cleardata" title="Clear this schedule">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        Delete
+                    </button>
                 </div>
 
 
