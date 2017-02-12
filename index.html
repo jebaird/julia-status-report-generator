@@ -17,7 +17,10 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="bootstrap.min.css">
         <style>
-
+        .share-url {
+            position: absolute;
+            left: -99999em;
+        }
         .copied::after {
               position: absolute;
               top: 0;
@@ -113,7 +116,7 @@
                         Print
                     </button>
                     
-                    <input type="text" class="form-control share-url hidden"  placeholder="Share this report" readonly title="url for this report" >
+                    <input type="text" class="form-control share-url"  placeholder="Share this report" readonly title="url for this report" >
                     
                     <button class="btn btn-default btn-sm" type="button" data-copytarget=".share-url" title="Share a link to this schedule">
                         <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
@@ -132,8 +135,9 @@
 
             <form class="form media--screen">
                 <div class="form-group">
-                    <label for="date">Report For</label>
+                    <label for="date">Date</label>
                     <input type="date" class="form-control " name="report-date" riot-tag="jb-input">
+
                 </div>
                 <div class="form-group">
                     <label for="date">Notes</label>
