@@ -175,7 +175,9 @@ remove( e ) {
     return;
 
     }
-    var index = [].slice.call( this.root.querySelectorAll('tbody tr'), 0 ).indexOf( e.target.parentNode.parentNode )
+
+
+    var index = [].slice.call( this.root.querySelectorAll('tbody tr:not(.empty)'), 0 ).indexOf( e.target.parentNode.parentNode )
 
     var data = Storage.get( this.LOG_DATA_STORAGE_KEY )
 
