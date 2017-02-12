@@ -125,7 +125,7 @@ media--screen
     });
     
     // update the url for sharing
-    document.querySelector( '.share-url' ).value = window.location.origin + '#!/d=' + encodeURIComponent( JSONC.pack( window.localStorage ) );
+    document.querySelector( '.share-url' ).value = window.location.origin + window.location.pathname + '#!/d=' + encodeURIComponent( JSONC.pack( window.localStorage ) );
 
 
 
