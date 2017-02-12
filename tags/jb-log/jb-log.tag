@@ -25,6 +25,25 @@
         pointer-events: initial;
     }
 
+    tbody > tr.empty {
+        display: none;
+    }
+
+    tbody > tr.empty:only-of-type {
+        display: table-row;
+    }
+
+    tr.empty td {
+        
+        padding: 5em 2em !important;
+        text-align: center;
+        font-weight: bold;
+
+
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+    }
+
 /*     tr > td:first-of-type {
         visibility: hidden;
         opacity: 0;
@@ -52,6 +71,10 @@
         </tr>
     </thead>
     <tbody>
+
+    <tr class="empty">
+        <td colspan="4">Nothing scheduled, Why not add an event?</td>
+    </tr>
 
         <tr each="{ opts.entries }">
 
