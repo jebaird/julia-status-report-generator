@@ -49,9 +49,9 @@
 
 
     <div class="form-group form-group--item">
-        <label for="item" >Item</label>
+        <label for="item" >Item / Event</label>
             
-            <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control form-control-sm" placeholder="Enter in a medicaiton ">
+            <input list="medications" name="item" required oninput="{ itemInputHandler }" class="form-control form-control-sm" placeholder="Select an item or enter an event">
 
             <datalist id="medications" >
 
